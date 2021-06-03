@@ -1,6 +1,7 @@
 Updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
 Patches updated to work on 5.4.0.
+
 Changed to work on debian based distros, but hopefully still works on other
 distros.
 
