@@ -16,7 +16,7 @@ Changes from the original are as follows:
 * Patches updated to work on 5.4.0.
 * Changed to work on debian based distros, but hopefully still works on other distros.
 * As part of the patching process the makefile will now replace the product name in `patches/i915-no-lvds.patch` with the one found in
-`/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`, although I find (with 1vyrain) it isn't necessary.
+`/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`), although I find (with 1vyrain) it isn't necessary.
 
 Original readme text follows:
 
