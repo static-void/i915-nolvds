@@ -1,11 +1,26 @@
+diff --git a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/trace.h
+index 6d787750d..ae9f8e7c7 100644
+--- a/drivers/gpu/drm/i915/gvt/trace.h
++++ b/drivers/gpu/drm/i915/gvt/trace.h
+@@ -377,7 +377,8 @@ TRACE_EVENT(render_mmio,
+ 
+ /* This part must be out of protection */
+ #undef TRACE_INCLUDE_PATH
+-#define TRACE_INCLUDE_PATH .
++#undef linux
++#define TRACE_INCLUDE_PATH LOCALKERNEL/drivers/gpu/drm/i915/gvt
+ #undef TRACE_INCLUDE_FILE
+ #define TRACE_INCLUDE_FILE trace
+ #include <trace/define_trace.h>
 diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index 01840d9..5498b37 100644
+index 24f2944da..ef7a184f0 100644
 --- a/drivers/gpu/drm/i915/i915_trace.h
 +++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -312,5 +312,5 @@  TRACE_EVENT(i915_ring_wait_end,
+@@ -987,5 +987,6 @@ DEFINE_EVENT(i915_context, i915_context_free,
  
  /* This part must be outside protection */
  #undef TRACE_INCLUDE_PATH
 -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915
-+#define TRACE_INCLUDE_PATH .
++#undef linux
++#define TRACE_INCLUDE_PATH LOCALKERNEL/drivers/gpu/drm/i915
  #include <trace/define_trace.h>
