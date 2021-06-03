@@ -17,6 +17,7 @@ else
 endif
 LOCALKERNEL := $(shell pwd)/linux-$(CKERNELVERSION)
 LOCALI915 := $(LOCALKERNEL)/drivers/gpu/drm/i915
+PRODUCT_ID := $(shell cat /sys/devices/virtual/dmi/id/board_name)
 
 clean:
 	cd $(LOCALKERNEL); \
@@ -52,7 +53,7 @@ download:
 
 patch: download
 	# Patch to allow building "out-of-tree"	
-	echo $(LOCALKERNEL)
+	sed -i "s/DMI_MATCH(DMI_PRODUCT_NAME, \"[A-Z0-9]\+\")/DMI_MATCH(DMI_PRODUCT_NAME, \"$(PRODUCT_ID)\")/g" patches/i915-no-lvds.patch
 	patch --forward -p1 --directory=$(LOCALKERNEL) \
 			< patches/i915-out-of-tree.patch || \
 			echo "Already patched."

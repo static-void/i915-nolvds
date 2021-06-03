@@ -10,9 +10,11 @@ disable LVDS when you do the installation, but the internal DP still doesn't
 appear as eDP, brightness controls still don't work, and for me the laptop
 doesn't sleep properly when the lid is closed. This fixes those issues.
 
-You may need to replace the code `20SAVHY877` from patches/i915-no-lvds.patch
-with your own product name (based on `dmidecode | grep -A3 '^System
-Information'`), although I find (with 1vyrain) it isn't necessary.
+As part of the patching process the makefile will now replace the product name
+in `patches/i915-no-lvds.patch` with the one found in
+`/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by
+`sudo dmidecode | grep -A3 '^System Information'`, although I find (with
+1vyrain) it isn't necessary.
 
 Original readme text follows:
 
