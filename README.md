@@ -8,7 +8,7 @@ This fixes the following issues:
 
 Notes:
 * With 1vyrain you can disable LVDS, which fixes the ghost output, but the internal DP still doesn't appear as eDP and only presents one resolution, and the other issues are still present.
-* With a non-nitrocaster boards this will not fix the brightness controls, but it does fix the other issues.
+* With non-nitrocaster boards this will not fix the brightness controls, but it does fix the other issues.
 
 This is updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
@@ -16,7 +16,7 @@ Changes from the original are as follows:
 * Patches updated to work on 5.4.0.
 * Changed to work on debian based distros, but hopefully still works on other distros.
 * As part of the patching process the makefile will now replace the product name in `patches/i915-no-lvds.patch` with the one found in
-`/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`, although I find (with 1vyrain) it isn't necessary.
+`/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`), although I find (with 1vyrain) it isn't necessary.
 
 Original readme text follows:
 
