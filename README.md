@@ -1,6 +1,19 @@
 Updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
-I have made it work on debian based distros, but I don't know if it works on other distros. I updated the patches to work on 5.4.0. Original readme text follows:
+Patches updated to work on 5.4.0.
+Changed to work on debian based distros, but hopefully still works on other
+distros.
+
+Worth noting that if you installed 1vyrain you can choose to have the BIOS
+disable LVDS when you do the installation, but the internal DP still doesn't
+appear as eDP, brightness controls still don't work, and for me the laptop
+doesn't sleep properly when the lid is closed. This fixes those issues.
+
+You may need to replace the code "20SAVHY877" from patches/i915-no-lvds.patch
+with your own product name (based on `dmidecode | grep -A3 '^System
+Information'`), although I find (with 1vyrain) it isn't necessary.
+
+Original readme text follows:
 
 # i915-nolvds
 
