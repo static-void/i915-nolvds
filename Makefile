@@ -7,18 +7,15 @@ ifeq ($(KVER),)
 KVER := "$(shell uname -r)"
 endif
 
-DISTRO := $(shell lsb_release -i | sed 's/Distributor ID:\t\(.*\)/\1/')
-ifeq ($(DISTRO),Ubuntu)
-	CKERNEL := "/lib/modules/$(KVER)"
-	CKERNELVERSION := $(shell echo $(KVER) | cut -d- -f1 | cut -d\. -f1,2)
-	UBUNTU_PATCH := linux_$(shell uname -r | cut -d- -f1)-$(shell uname -r | cut -d- -f2).$(shell uname -v | cut -d- -f1 | cut -d\# -f2).diff
-else
+DEBIAN_VER := $(shell cat /etc/debian_version)
+ifeq ($(DEBIAN_VER),)
 	CKERNEL := "/usr/lib/modules/$(shell uname -r)"
 	CKERNELVERSION := $(shell uname -r | cut -d- -f1)
+else
+	CKERNEL := "/lib/modules/$(KVER)"
+	CKERNELVERSION := $(shell echo $(KVER) | cut -d- -f1 | cut -d\. -f1,2)
 endif
-# 4.14.8
 LOCALKERNEL := $(shell pwd)/linux-$(CKERNELVERSION)
-# ./linux-4.14.8
 LOCALI915 := $(LOCALKERNEL)/drivers/gpu/drm/i915
 
 clean:
@@ -44,12 +41,12 @@ uninstall:
 download:
 	if [ ! -d $(LOCALKERNEL)/ ]; then \
 		echo "Downloading Linux kernel source for v$(CKERNELVERSION)"; \
-		if [ "$(DISTRO)" = "Ubuntu" ]; then \
-			apt-get source linux-image-unsigned-$(shell uname -r); \
-			mv linux-$(shell echo $(KVER) | cut -d- -f1) $(LOCALKERNEL); \
-		else \
+		if [ "$(DEBIAN_VER)" = "" ]; then \
 			git clone --depth=1 --branch v$(CKERNELVERSION); \
 			https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $(LOCALKERNEL); \
+		else \
+			apt-get source linux-image-unsigned-$(shell uname -r); \
+			mv linux-$(shell echo $(KVER) | cut -d- -f1) $(LOCALKERNEL); \
 		fi \
 	fi
 
