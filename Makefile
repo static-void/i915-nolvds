@@ -40,7 +40,8 @@ uninstall:
 			echo "Nothing to uninstall!"
 
 download:
-	if [ ! -d $(LOCALKERNEL)/ ]; then \
+	echo LOCALKERNEL=$(LOCALKERNEL)
+	if [ ! -f $(LOCALKERNEL)/Makefile ]; then \
 		echo "Downloading Linux kernel source for v$(CKERNELVERSION)"; \
 		if [ "$(DEBIAN_VER)" = "" ]; then \
 			git clone --depth=1 --branch v$(CKERNELVERSION); \
@@ -52,6 +53,7 @@ download:
 	fi
 
 patch: download
+	echo DEBIAN_VER=$(DEBIAN_VER)
 	# Patch to allow building "out-of-tree"	
 	sed -i "s/DMI_MATCH(DMI_PRODUCT_NAME, \"[A-Z0-9]\+\")/DMI_MATCH(DMI_PRODUCT_NAME, \"$(PRODUCT_ID)\")/g" patches/i915-no-lvds.patch
 	patch --forward -p1 --directory=$(LOCALKERNEL) \
