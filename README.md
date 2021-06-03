@@ -8,7 +8,7 @@ This fixes the following issues:
 
 Notes:
 * With 1vyrain you can disable LVDS, which fixes the ghost output, but the internal DP still doesn't appear as eDP and only presents one resolution, and the other issues are still present.
-* With a non-nitrocaster boards this will not fix the brightness controls, but it does fix the other issues.
+* With non-nitrocaster boards this will not fix the brightness controls, but it does fix the other issues.
 
 This is updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
