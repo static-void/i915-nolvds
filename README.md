@@ -1,6 +1,8 @@
-# i915-nolvds
+Updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
-I bricked by laptop flashing coreboot :( I don't use this anymore. Good luck!
+I have made it work on debian based distros, but I don't know if it works on other distros. I updated the patches to work on 5.4.0. Original readme text follows:
+
+# i915-nolvds
 
 For use with x220/x230 nitrocaster or K.K. fhd mod. If you want to disable LVDS ghost display in linux, this is what you want. 
 
