@@ -13,10 +13,11 @@ Notes:
 This is updated from the original here: https://github.com/alexdelifer/i915-nolvds
 
 Changes from the original are as follows:
-* Patches updated to work on 5.4.0.
+* Patches updated
 * Changed to work on debian based distros, but hopefully still works on other distros.
 * As part of the patching process the makefile will now replace the product name in `patches/i915-no-lvds.patch` with the one found in
 `/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`), although I find (with 1vyrain) it isn't necessary.
+* Disabled DKMS as it didn't work and the patches need to be fixed at most releases anyway
 
 Original readme text follows:
 
