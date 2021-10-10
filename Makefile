@@ -40,7 +40,9 @@ uninstall:
 			echo "Nothing to uninstall!"
 
 download:
-	echo LOCALKERNEL=$(LOCALKERNEL)
+	#echo LOCALKERNEL=$(LOCALKERNEL)
+	#echo PWD=$(shell pwd)
+	#echo MV_CMD=linux-$(shell echo $(KVER) | cut -d- -f1) $(LOCALKERNEL)
 	if [ ! -f $(LOCALKERNEL)/Makefile ]; then \
 		echo "Downloading Linux kernel source for v$(CKERNELVERSION)"; \
 		if [ "$(DEBIAN_VER)" = "" ]; then \
@@ -48,7 +50,10 @@ download:
 			https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $(LOCALKERNEL); \
 		else \
 			apt-get source linux-image-unsigned-$(shell uname -r); \
-			mv linux-$(shell echo $(KVER) | cut -d- -f1) $(LOCALKERNEL); \
+			if ! mv linux-$(shell echo $(KVER) | cut -d- -f1) $(LOCALKERNEL); then \
+			    echo ERROR: Could not find linux-$(shell echo $(KVER) | cut -d- -f1)/. Move downloaded source dir to linux-$(CKERNELVERSION)/ and try again; \
+				exit 1; \
+	        fi \
 		fi \
 	fi
 
@@ -67,9 +72,10 @@ patch: download
 # default target
 i915: patch
 	echo Building $(LOCAL) using $(CKERNEL)/build
-	make EXTRA_CFLAGS="-I$(LOCALKERNEL)/drivers/gpu/drm/i915 -DLOCALKERNEL=$(LOCALKERNEL)" -C $(CKERNEL)/build M="$(LOCALI915)"
+	make EXTRA_CFLAGS="-I$(LOCALKERNEL)/drivers/gpu/drm/i915 -DLOCALKERNEL=$(LOCALKERNEL)" -C $(CKERNEL)/build M="$(LOCALI915)" -j$(shell echo $$(($$(nproc)-1)))
 	cp $(LOCALI915)/i915.ko \
 		./i915.ko
+	strip --strip-debug $(LOCALI915)/i915.ko
 	xz -z $(LOCALI915)/i915.ko
 
 install: uninstall
