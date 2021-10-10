@@ -1,5 +1,4 @@
-diff --git a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/trace.h
-index 6d787750d..ae9f8e7c7 100644
+diff -Naur a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/trace.h
 --- a/drivers/gpu/drm/i915/gvt/trace.h
 +++ b/drivers/gpu/drm/i915/gvt/trace.h
 @@ -377,7 +377,8 @@ TRACE_EVENT(render_mmio,
@@ -12,11 +11,10 @@ index 6d787750d..ae9f8e7c7 100644
  #undef TRACE_INCLUDE_FILE
  #define TRACE_INCLUDE_FILE trace
  #include <trace/define_trace.h>
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index 24f2944da..ef7a184f0 100644
+diff -Naur a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
 --- a/drivers/gpu/drm/i915/i915_trace.h
 +++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -987,5 +987,6 @@ DEFINE_EVENT(i915_context, i915_context_free,
+@@ -1035,5 +1035,6 @@
  
  /* This part must be outside protection */
  #undef TRACE_INCLUDE_PATH
