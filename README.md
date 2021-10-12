@@ -23,7 +23,7 @@ Changes from the original are as follows:
 Just run `make` and then `sudo make install`.
 
 If you get and error similar to the following on debian based distros
-  "```ERROR: Could not find linux-5.13 | cut -d- -f1)/. Move downloaded source dir to linux-5.13/ and try again```",
+  "```ERROR: Could not find linux-5.13/. Move downloaded source dir to linux-5.13/ and try again```",
 the Makefile downloaded and expanded the linux kernel source using apt but could not figure out the name of the directory that apt expanded it to. You will find that a new directory with the kernel source has appeared in the working directory. Move it to the path indicated by the error and then run `make` again.
 
 On debian based distros you need to make sure you are on the latest revision of the kernel release available in the apt repository. For example, for 5.8.0 you currently need linux-image-unsigned-5.13.0-1014-oem. Apt will not download source for linux-image-unsigned-5.13.0-1012-oem and older.
