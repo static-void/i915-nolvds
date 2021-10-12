@@ -1,4 +1,4 @@
-x220/x230 patches for nitrocaster or KK or similar FHD/2K mod boards.
+### x220/x230 patches for nitrocaster or KK or similar FHD/2K mod boards
 
 This fixes the following issues:
 1. Extra "ghost" LVDS output
@@ -19,7 +19,7 @@ Changes from the original are as follows:
 `/sys/devices/virtual/dmi/id/board_name` (which is the same as that reported by `sudo dmidecode | grep -A3 '^System Information'`), although I find (with 1vyrain) it isn't necessary.
 * Disabled DKMS as it didn't work and the patches need to be fixed at most releases anyway
 
-Installation:
+### Installation
 Just run `make` and then `sudo make install`.
 If you get and error similar to the following on debian based distros:
   `ERROR: Could not find linux-5.13 | cut -d- -f1)/. Move downloaded source dir to linux-5.13/ and try again`
@@ -27,7 +27,7 @@ The Makefile downloaded and expanded the linux kernel source using apt but could
 
 On debian based distros you need to make sure you are on the latest revision of the kernel release available in the apt repository. For example, for 5.8.0 you currently need linux-image-unsigned-5.13.0-1014-oem. Apt will not download source for linux-image-unsigned-5.13.0-1012-oem and older.
 
-Todo:
+### Todo
 * Keep patches for multiple kernel versions and apply the right patches as required (currently patches are for 5.13.0)
 * Experiment with changing `DMI_MATCH(DMI_PRODUCT_NAME, "XXXXXXX"),` to `DMI_MATCH(DMI_PRODUCT_FAMILY, "ThinkPad X230"),` and a separate entry for x220, so that the patches don't have to be modified for each machine, and compiled modules are portable between x330 machines.
 
